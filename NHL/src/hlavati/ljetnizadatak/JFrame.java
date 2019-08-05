@@ -106,7 +106,13 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ERAMouseClicked
 
     private void GITkodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GITkodMouseClicked
-        
+       String url = "https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/JFrame.java";
+       try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+            JOptionPane.showMessageDialog(null, "URL uspješno otvoren!");
+        } catch (IOException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_GITkodMouseClicked
 
     /**
