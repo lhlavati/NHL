@@ -78,7 +78,36 @@ public class Start {
                     + " CRUD baze\n\n5. IZLAZ\n");
             switch (KontroleZaUnos.unosInt("Unesite redni broj klase koju zelite otvoriti")) {
                 case 1:
-                    
+                    try {
+                        java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/Start.java"));
+                        JOptionPane.showMessageDialog(null, "URL uspješno otvoren!");
+                    } catch (IOException ex) {
+                        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case 2:
+                    try {
+                        java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/Baza.java"));
+                        JOptionPane.showMessageDialog(null, "URL uspješno otvoren!");
+                    } catch (IOException ex) {
+                        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case 3:
+                    try {
+                        java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/KontroleZaUnos.java"));
+                        JOptionPane.showMessageDialog(null, "URL uspješno otvoren!");
+                    } catch (IOException ex) {
+                        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case 4:
+                    try {
+                        java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/Crud.java"));
+                        JOptionPane.showMessageDialog(null, "URL uspješno otvoren!");
+                    } catch (IOException ex) {
+                        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
                 case 5:
                     break izlaz;
