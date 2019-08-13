@@ -16,7 +16,7 @@ X - 5. Postaviti na github kod
 
 X - 6. U readme.md napisati koje su točke realizirane
 
-7. U izborniku postaviti stavku koji otvara github kod
+X - 7. U izborniku postaviti stavku koji otvara github kod
 
 X - 8. Sav kod kucati iz 0, ne raditi copy/paste
 
