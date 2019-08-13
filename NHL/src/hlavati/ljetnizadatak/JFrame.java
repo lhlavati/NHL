@@ -36,8 +36,8 @@ public class JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         ERA = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        GITkod = new javax.swing.JList<>();
+        JFrame = new javax.swing.JToggleButton();
+        Izbornik = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,19 +49,17 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
-        GITkod.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Baza.java", "JFrame.java" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        GITkod.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                GITkodMouseClicked(evt);
+        JFrame.setText("JFrame.java");
+        JFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFrameActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(GITkod);
 
-        jLabel1.setText("GitHub kod");
+        Izbornik.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        Izbornik.setText("IZBORNIK");
+
+        jLabel1.setText("GitHub link");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,25 +68,28 @@ public class JFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ERA)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ERA)
+                            .addComponent(JFrame)
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(480, Short.MAX_VALUE))
+                        .addGap(270, 270, 270)
+                        .addComponent(Izbornik)))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ERA)
-                    .addComponent(jLabel1))
+                .addComponent(Izbornik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ERA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JFrame)
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,15 +106,16 @@ public class JFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ERAMouseClicked
 
-    private void GITkodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GITkodMouseClicked
-       String url = "https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/JFrame.java";
-       try {
+    private void JFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFrameActionPerformed
+        String url="https://github.com/lhlavati/NHL/blob/master/NHL/src/hlavati/ljetnizadatak/JFrame.java";
+        
+        try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
             JOptionPane.showMessageDialog(null, "URL uspješno otvoren!");
-        } catch (IOException ex) {
-            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, e);
         }
-    }//GEN-LAST:event_GITkodMouseClicked
+    }//GEN-LAST:event_JFrameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,8 +154,8 @@ public class JFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ERA;
-    private javax.swing.JList<String> GITkod;
+    private javax.swing.JLabel Izbornik;
+    private javax.swing.JToggleButton JFrame;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
