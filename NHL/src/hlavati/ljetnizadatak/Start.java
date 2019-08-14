@@ -17,10 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class Start {
 
-    private Connection veza;
 
     public Start() {
-        veza = Baza.getConnection();
+        Crud.veza = Baza.getConnection();
         JOptionPane.showMessageDialog(null, "Preporuka: Console-u stavite preko cijelog ekrana radi boljeg pregleda! :)");
 
         izlaz:
@@ -32,6 +31,18 @@ public class Start {
                     break;
                 case 2:
                     urlGit();
+                    break;
+                case 3:
+                    Crud.citajIzBaze();
+                    break;
+                case 4:
+                    
+                    break;
+                case 5:
+                    
+                    break;
+                case 6:
+                    
                     break;
                 case 7:
                     JOptionPane.showMessageDialog(null, "Doviđenja!");
