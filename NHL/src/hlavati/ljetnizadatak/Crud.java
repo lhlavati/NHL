@@ -210,4 +210,76 @@ public class Crud {
         }
 
     }
+
+    public static void unesiUBazu() {
+
+        izlaz:
+        while (true) {
+            System.out.println("\n1. igrac\n2. tim\n3. utakmica\n4. ozljeda\n5. IZLAZ");
+            switch (KontroleZaUnos.unosInt("Unesite redni broj tablice u koju biste htjeli unijeti nove podatke")) {
+                case 1:
+                    try {
+                        ispisiTablicu("SELECT a.sifra, a.ime, a.prezime, a.pozicija, a.brojDresa, b.ime AS tim\n"
+                                + "FROM igrac a INNER JOIN tim b ON b.sifra = a.tim;");
+                        izraz = veza.prepareStatement("INSERT INTO igrac (ime, prezime, pozicija, brojDresa, tim) VALUES (?, ?, ?, ?, ?)");
+                        izraz.setString(1, KontroleZaUnos.unosString("Unesite ime"));
+                        izraz.setString(2, KontroleZaUnos.unosString("Unesite prezime"));
+                        izraz.setString(3, KontroleZaUnos.unosPozicije("Unesite poziciju"));
+                        izraz.setInt(4, KontroleZaUnos.unosInt("Unesite broj dresa"));
+                        System.out.println("");
+                        ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
+                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
+                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                        izraz.setInt(5, KontroleZaUnos.unosInt("Unesite sifru željenog tima"));                 // KONTROLA ZA UNOS TIMA!!!!!!!!!!!!
+                        JOptionPane.showMessageDialog(null, "Uspješno uneseno (" + izraz.executeUpdate() + ")");
+                        System.out.println("");
+                        ispisiTablicu("SELECT a.sifra, a.ime, a.prezime, a.pozicija, a.brojDresa, b.ime AS tim\n"
+                                + "FROM igrac a INNER JOIN tim b ON b.sifra = a.tim;");
+                        JOptionPane.showMessageDialog(null, "Tablica igrac prikazana!");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 2:
+                    try {
+                        System.out.println("");
+                        ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
+                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
+                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                        izraz = veza.prepareStatement("INSERT INTO tim (ime, grad, trener, kapetan) VALUES (?, ?, ?, ?)");
+                        izraz.setString(1, KontroleZaUnos.unosString("Unesite ime"));
+                        izraz.setString(2, KontroleZaUnos.unosString("Unesite grad"));
+                        izraz.setString(3, KontroleZaUnos.unosString("Unesite ime i prezime trenera"));
+                        System.out.println("");
+                        ispisiTablicu("SELECT a.sifra, a.ime, a.prezime, a.pozicija, a.brojDresa, b.ime AS tim\n"
+                                + "FROM igrac a INNER JOIN tim b ON b.sifra = a.tim;");
+                        izraz.setInt(4, KontroleZaUnos.unosInt("Unesite sifru igraca kojeg zelite za Vaseg kapetana"));
+
+                        JOptionPane.showMessageDialog(null, "Uspješno uneseno (" + izraz.executeUpdate() + ")");
+                        System.out.println("");
+                        ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
+                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
+                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                        JOptionPane.showMessageDialog(null, "Tablica tim prikazana!");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+                    break izlaz;
+                default:
+                    JOptionPane.showMessageDialog(null, "Nevazeci broj!");
+                    break;
+            }
+        }
+
+    }
 }

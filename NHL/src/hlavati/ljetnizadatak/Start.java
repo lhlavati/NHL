@@ -36,7 +36,7 @@ public class Start {
                     Crud.citajIzBaze();
                     break;
                 case 4:
-                    
+                    Crud.unesiUBazu();
                     break;
                 case 5:
                     
