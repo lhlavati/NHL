@@ -46,4 +46,22 @@ public class KontroleZaUnos {
 
     }
 
+    public static String unosPozicije(String poruka){
+        String s;
+        int i;
+        while(true){
+            s = unosString(poruka);
+            if(s.length() > 2){
+                JOptionPane.showMessageDialog(null, "Pozicija ne može imati više od 2 slova!");
+            }else{
+                try {
+                    i = Integer.parseInt(s);
+                    JOptionPane.showMessageDialog(null, "Pozicija ne može biti broj!");
+                } catch (Exception e) {
+                    return s;
+                }
+            }
+        }
+        
+    }
 }
