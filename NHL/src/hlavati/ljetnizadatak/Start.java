@@ -42,7 +42,7 @@ public class Start {
                     
                     break;
                 case 6:
-                    
+                    Crud.brisiIzBaze();
                     break;
                 case 7:
                     JOptionPane.showMessageDialog(null, "Doviđenja!");
