@@ -5,6 +5,9 @@
  */
 package hlavati.ljetnizadatak;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,14 +49,14 @@ public class KontroleZaUnos {
 
     }
 
-    public static String unosPozicije(String poruka){
+    public static String unosPozicije(String poruka) {
         String s;
         int i;
-        while(true){
+        while (true) {
             s = unosString(poruka);
-            if(s.length() > 2){
+            if (s.length() > 2) {
                 JOptionPane.showMessageDialog(null, "Pozicija ne može imati više od 2 slova!");
-            }else{
+            } else {
                 try {
                     i = Integer.parseInt(s);
                     JOptionPane.showMessageDialog(null, "Pozicija ne može biti broj!");
@@ -62,6 +65,42 @@ public class KontroleZaUnos {
                 }
             }
         }
-        
+
     }
+
+    public static int rezultat(String poruka) {
+
+        int i;
+        while (true) {
+            try {
+                i = Integer.parseInt(JOptionPane.showInputDialog(poruka));
+                if (i < 0) {
+                    JOptionPane.showMessageDialog(null, "Rezultat ne može biti negativan");
+                    continue;
+                }
+                return i;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Obavezan unos broja");
+            }
+        }
+
+    }
+
+    public static java.sql.Date unosDatum(String poruka) {
+
+        while (true) {
+
+            try {
+
+                return java.sql.Date.valueOf(JOptionPane.showInputDialog(poruka));
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Obavezan unos u formatu: yyyy-MM-dd\nPrimjer na današnjem datumu: " + java.sql.Date.valueOf(LocalDate.now()));
+            }
+
+        }
+
+    }
+
 }
