@@ -60,8 +60,7 @@ public class Crud {
                     break;
                 case 2:
                     ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
-                            + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
-                            + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                            + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
                     JOptionPane.showMessageDialog(null, "Tablica tim prikazana!");
                     break;
                 case 3:
@@ -123,8 +122,7 @@ public class Crud {
                     try {
                         System.out.println("");
                         ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
-                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
-                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                                + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
                         izraz = veza.prepareStatement("DELETE FROM tim WHERE sifra = ?");
                         while (true) {
                             izraz.setInt(1, KontroleZaUnos.unosInt("Unesite šifru reda kojeg bi htjeli obrisati"));
@@ -135,8 +133,7 @@ public class Crud {
                                 JOptionPane.showMessageDialog(null, "Uspješno obrisano (" + izraz.executeUpdate() + ")");
                                 System.out.println("\n\n");
                                 ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
-                                        + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
-                                        + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                                        + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
                                 JOptionPane.showMessageDialog(null, "Tablica tim prikazana!");
                                 break izadi;
                             }
@@ -228,8 +225,7 @@ public class Crud {
                         izraz.setInt(4, KontroleZaUnos.unosInt("Unesite broj dresa"));
                         System.out.println("");
                         ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
-                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
-                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                                + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
                         izraz.setInt(5, KontroleZaUnos.unosInt("Unesite sifru željenog tima"));                 // KONTROLA ZA UNOS TIMA!!!!!!!!!!!!
                         JOptionPane.showMessageDialog(null, "Uspješno uneseno (" + izraz.executeUpdate() + ")");
                         System.out.println("");
@@ -242,11 +238,11 @@ public class Crud {
                     }
                     break;
                 case 2:
+
                     try {
                         System.out.println("");
                         ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
-                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
-                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                                + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
                         izraz = veza.prepareStatement("INSERT INTO tim (ime, grad, trener, kapetan) VALUES (?, ?, ?, ?)");
                         izraz.setString(1, KontroleZaUnos.unosString("Unesite ime"));
                         izraz.setString(2, KontroleZaUnos.unosString("Unesite grad"));
@@ -259,8 +255,7 @@ public class Crud {
                         JOptionPane.showMessageDialog(null, "Uspješno uneseno (" + izraz.executeUpdate() + ")");
                         System.out.println("");
                         ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
-                                + "FROM tim b INNER JOIN igrac a ON b.sifra = a.tim\n"
-                                + "WHERE a.sifra = 11 OR a.sifra = 23 OR a.sifra = 35;");
+                                + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
                         JOptionPane.showMessageDialog(null, "Tablica tim prikazana!");
 
                     } catch (Exception e) {
@@ -269,9 +264,50 @@ public class Crud {
                     break;
                 case 3:
 
+                    try {
+                        System.out.println("");
+                        ispisiTablicu("SELECT c.sifra, c.rezultatDomacin, c.rezultatGost, c.datumUtakmice, d.ime AS domacin, b.ime AS gost\n"
+                                + "FROM utakmica c INNER JOIN tim b ON b.sifra = c.domacin\n"
+                                + "INNER JOIN tim d ON d.sifra = c.gost");
+                        izraz = veza.prepareStatement("INSERT INTO utakmica (rezultatDomacin, rezultatGost, datumUtakmice, domacin, gost) VALUES (?, ?, ?, ?, ?)");
+                        izraz.setInt(1, KontroleZaUnos.rezultat("Unesite broj golova postignutih od strane domacina"));
+                        izraz.setInt(2, KontroleZaUnos.rezultat("Unesite broj golova postignutih od strane gosta"));
+                        izraz.setDate(3, KontroleZaUnos.unosDatum("Unesite datum utakmice u formatu: yyyy-MM-dd"));
+                        ispisiTablicu("SELECT b.sifra, b.ime, b.grad, b.trener, concat(a.ime, ' ', a.prezime) AS kapetan \n"
+                                + "FROM tim b INNER JOIN igrac a ON a.sifra = b.kapetan;");
+                        izraz.setInt(4, KontroleZaUnos.unosInt("Unesite sifru tima koji je domacin"));
+                        izraz.setInt(5, KontroleZaUnos.unosInt("Unesite sifru tima koji je gost"));
+                        JOptionPane.showMessageDialog(null, "Uspješno uneseno (" + izraz.executeUpdate() + ")");
+                        System.out.println("");
+                        ispisiTablicu("SELECT c.sifra, c.rezultatDomacin, c.rezultatGost, c.datumUtakmice, d.ime AS domacin, b.ime AS gost\n"
+                                + "FROM utakmica c INNER JOIN tim b ON b.sifra = c.domacin\n"
+                                + "INNER JOIN tim d ON d.sifra = c.gost");
+                        JOptionPane.showMessageDialog(null, "Tablica utakmica prikazana!");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 4:
 
+                    try {
+                        ispisiTablicu("SELECT e.sifra, e.opisIncidenta, e.opisOzljede, concat(a.ime, ' ', a.prezime) AS igrac\n"
+                                + "FROM ozljeda e INNER JOIN igrac a ON a.sifra = e.igrac;");
+                        izraz = veza.prepareStatement("INSERT INTO ozljeda (opisIncidenta, opisOzljede, igrac) VALUES (?, ?, ?)");
+                        izraz.setString(1, KontroleZaUnos.unosString("Opisite incident"));
+                        izraz.setString(2, KontroleZaUnos.unosString("Opisite tip ozljede"));
+                        ispisiTablicu("SELECT a.sifra, a.ime, a.prezime, a.pozicija, a.brojDresa, b.ime AS tim\n"
+                                + "FROM igrac a INNER JOIN tim b ON b.sifra = a.tim;");
+                        izraz.setInt(3, KontroleZaUnos.unosInt("Unesite sifru igraca koji se ozlijedio"));
+                        JOptionPane.showMessageDialog(null, "Uspješno uneseno (" + izraz.executeUpdate() + ")");
+                        System.out.println("");
+                        ispisiTablicu("SELECT e.sifra, e.opisIncidenta, e.opisOzljede, concat(a.ime, ' ', a.prezime) AS igrac\n"
+                                + "FROM ozljeda e INNER JOIN igrac a ON a.sifra = e.igrac;");
+                        JOptionPane.showMessageDialog(null, "Tablica ozljeda prikazana!");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 5:
                     break izlaz;
