@@ -6,7 +6,7 @@ Obavezni dio:
 
 X - 1. Za razvoj aplikacije koristiti NetBeans IDE
 
-2. Aplikacija mora imati izbornik na kojem su vidljive sve mogućnosti aplikacije
+X - 2. Aplikacija mora imati izbornik na kojem su vidljive sve mogućnosti aplikacije
 
 X - 3. Jedna stavka izbornika otvara poveznicu u mrežnom pregledniku s ERA dijagramom baze koja je na github-u
 
