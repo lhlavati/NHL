@@ -39,12 +39,17 @@ public class Start {
                     Crud.unesiUBazu();
                     break;
                 case 5:
-                    
+                    Crud.promjeniUBazi();
                     break;
                 case 6:
                     Crud.brisiIzBaze();
                     break;
                 case 7:
+                    try {
+                        Crud.veza.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     JOptionPane.showMessageDialog(null, "Doviđenja!");
                     break izlaz;
                 default:
