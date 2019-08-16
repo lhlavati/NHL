@@ -10,7 +10,7 @@ X - 2. Aplikacija mora imati izbornik na kojem su vidljive sve mogućnosti aplik
 
 X - 3. Jedna stavka izbornika otvara poveznicu u mrežnom pregledniku s ERA dijagramom baze koja je na github-u
 
-4. Aplikacija omogućuje CRUD - unos, čitanje, promjenu i brisanje svih podataka u odabranoj tablici.
+X - 4. Aplikacija omogućuje CRUD - unos, čitanje, promjenu i brisanje svih podataka u odabranoj tablici.
 
 X - 5. Postaviti na github kod
 
@@ -24,4 +24,4 @@ X - 9. Imenovati pakete prezime.ljetnizadatak
 
 Napredni dio:
 
-1. Za unos i promjenu u bazu potrebno je napraviti kontrole svih unesenih podataka
+X - 1. Za unos i promjenu u bazu potrebno je napraviti kontrole svih unesenih podataka
