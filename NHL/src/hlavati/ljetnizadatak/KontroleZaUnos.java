@@ -6,6 +6,9 @@
 package hlavati.ljetnizadatak;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
@@ -56,13 +59,10 @@ public class KontroleZaUnos {
             s = unosString(poruka);
             if (s.length() > 2) {
                 JOptionPane.showMessageDialog(null, "Pozicija ne može imati više od 2 slova!");
+            } else if (s.matches(".*\\d.*")) {
+                JOptionPane.showMessageDialog(null, "Pozicija ne može sadržavati broj!");
             } else {
-                try {
-                    i = Integer.parseInt(s);
-                    JOptionPane.showMessageDialog(null, "Pozicija ne može biti broj!");
-                } catch (Exception e) {
-                    return s;
-                }
+                return s;
             }
         }
 
@@ -93,11 +93,139 @@ public class KontroleZaUnos {
             try {
 
                 return java.sql.Date.valueOf(JOptionPane.showInputDialog(poruka));
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
                         "Obavezan unos u formatu: yyyy-MM-dd\nPrimjer na današnjem datumu: " + java.sql.Date.valueOf(LocalDate.now()));
             }
+
+        }
+
+    }
+
+    public static int unosSifreIgraca(String poruka) {
+
+        int i;
+        PreparedStatement izrazS;
+        ResultSet rs;
+        while (true) {
+
+            try {
+
+                i = unosInt(poruka);
+                izrazS = Crud.veza.prepareStatement("SELECT count(*) AS broj FROM igrac WHERE sifra = ?");
+                izrazS.setInt(1, i);
+                rs = izrazS.executeQuery();
+                rs.next();
+                if (rs.getInt("broj") != 0) {
+                    return i;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Pogrešan unos!\nMolimo odaberite vazecu sifru igraca!");
+                    continue;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return 0;
+
+        }
+
+    }
+
+    public static int unosSifreTima(String poruka) {
+
+        int i;
+        PreparedStatement izrazS;
+        ResultSet rs;
+        while (true) {
+
+            try {
+
+                i = unosInt(poruka);
+                izrazS = Crud.veza.prepareStatement("SELECT count(*) AS broj FROM tim WHERE sifra = ?");
+                izrazS.setInt(1, i);
+                rs = izrazS.executeQuery();
+                rs.next();
+                if (rs.getInt("broj") != 0) {
+                    return i;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Pogrešan unos!\nMolimo odaberite vazecu sifru tima!");
+                    continue;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return 0;
+
+        }
+
+    }
+
+    public static int unosSifreUtakmice(String poruka) {
+
+        int i;
+        PreparedStatement izrazS;
+        ResultSet rs;
+        while (true) {
+
+            try {
+
+                i = unosInt(poruka);
+                izrazS = Crud.veza.prepareStatement("SELECT count(*) AS broj FROM utakmica WHERE sifra = ?");
+                izrazS.setInt(1, i);
+                rs = izrazS.executeQuery();
+                rs.next();
+                if (rs.getInt("broj") != 0) {
+                    return i;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Pogrešan unos!\nMolimo odaberite vazecu sifru utakmica!");
+                    continue;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return 0;
+
+        }
+
+    }
+
+    public static int unosSifreOzljede(String poruka) {
+
+        int i;
+        PreparedStatement izrazS;
+        ResultSet rs;
+        while (true) {
+
+            try {
+
+                i = unosInt(poruka);
+                izrazS = Crud.veza.prepareStatement("SELECT count(*) AS broj FROM ozljeda WHERE sifra = ?");
+                izrazS.setInt(1, i);
+                rs = izrazS.executeQuery();
+                rs.next();
+                if (rs.getInt("broj") != 0) {
+                    return i;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Pogrešan unos!\nMolimo odaberite vazecu sifru ozljede!");
+                    continue;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return 0;
 
         }
 
