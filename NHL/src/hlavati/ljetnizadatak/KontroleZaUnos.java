@@ -18,10 +18,13 @@ import javax.swing.JOptionPane;
  * @author Luka
  */
 public class KontroleZaUnos {
+    
+    public static PreparedStatement izrazS;
+    public static ResultSet rs;
+    public static int i;
 
     public static int unosInt(String poruka) {
 
-        int i;
         while (true) {
             try {
                 i = Integer.parseInt(JOptionPane.showInputDialog(poruka));
@@ -54,7 +57,6 @@ public class KontroleZaUnos {
 
     public static String unosPozicije(String poruka) {
         String s;
-        int i;
         while (true) {
             s = unosString(poruka);
             if (s.length() > 2) {
@@ -70,7 +72,6 @@ public class KontroleZaUnos {
 
     public static int rezultat(String poruka) {
 
-        int i;
         while (true) {
             try {
                 i = Integer.parseInt(JOptionPane.showInputDialog(poruka));
@@ -105,9 +106,6 @@ public class KontroleZaUnos {
 
     public static int unosSifreIgraca(String poruka) {
 
-        int i;
-        PreparedStatement izrazS;
-        ResultSet rs;
         while (true) {
 
             try {
@@ -137,9 +135,6 @@ public class KontroleZaUnos {
 
     public static int unosSifreTima(String poruka) {
 
-        int i;
-        PreparedStatement izrazS;
-        ResultSet rs;
         while (true) {
 
             try {
@@ -169,9 +164,6 @@ public class KontroleZaUnos {
 
     public static int unosSifreUtakmice(String poruka) {
 
-        int i;
-        PreparedStatement izrazS;
-        ResultSet rs;
         while (true) {
 
             try {
@@ -201,9 +193,6 @@ public class KontroleZaUnos {
 
     public static int unosSifreOzljede(String poruka) {
 
-        int i;
-        PreparedStatement izrazS;
-        ResultSet rs;
         while (true) {
 
             try {
