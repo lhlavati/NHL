@@ -3,3 +3,4 @@
 *.mf
 *.properties
 /NHL/build/
+/NHL.JFrame/target/
